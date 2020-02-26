@@ -14,4 +14,5 @@ public interface VariantService {
     void delete(Long id);
 
     Variant findByName(String name);
+
 }

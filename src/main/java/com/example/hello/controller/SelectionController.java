@@ -50,8 +50,14 @@ public class SelectionController {
         } else {
             //product.setCategory(categoryService.findById("Nguyên căn"));
         }
-        selectionService.save(selection);
-        return new ResponseEntity("Thêm thành công!", HttpStatus.CREATED);
+        Long amount = selectionService.countAllByVariantId(selection.getVariant().getId());
+        if (amount <= 3) {
+            selectionService.save(selection);
+            return new ResponseEntity("Tạo thành công", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity("Bạn chỉ có thể tạo 3 selection", HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PutMapping("/{id}")

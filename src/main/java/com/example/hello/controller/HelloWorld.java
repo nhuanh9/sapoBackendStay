@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/hello/")
-public class HelloWorld {
+public class    HelloWorld {
     @GetMapping
     public ResponseEntity<String > sayHello(){
         return new ResponseEntity<>("Hello World", HttpStatus.OK);

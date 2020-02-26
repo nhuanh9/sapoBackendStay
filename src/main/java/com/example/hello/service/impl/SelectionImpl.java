@@ -30,4 +30,11 @@ public class SelectionImpl implements SelectionService {
     public void delete(Long id) {
         selectionRepository.deleteById(id);
     }
+
+    @Override
+    public Long countAllByVariantId(Long id) {
+        return selectionRepository.countAllByVariantId(id);
+    }
+
+
 }

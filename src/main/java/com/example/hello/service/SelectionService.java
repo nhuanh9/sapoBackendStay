@@ -13,4 +13,6 @@ public interface SelectionService {
     void save(Selection selection);
 
     void delete(Long id);
+
+    Long countAllByVariantId(Long id);
 }
