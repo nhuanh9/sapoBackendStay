@@ -51,11 +51,13 @@ public class SelectionController {
             //product.setCategory(categoryService.findById("Nguyên căn"));
         }
         Long amount = selectionService.countAllByVariantId(selection.getVariant().getId());
-        if (amount <= 3) {
+        Selection selection1 = selectionService.findByName(selection.getName());
+        boolean check = selectionService.findByName(selection.getName())==null;
+        if (amount <= 2 && check) {
             selectionService.save(selection);
-            return new ResponseEntity("Tạo thành công", HttpStatus.CREATED);
+            return new ResponseEntity("Tạo thành công " + amount, HttpStatus.CREATED);
         } else {
-            return new ResponseEntity("Bạn chỉ có thể tạo 3 selection", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Bạn chỉ có thể tạo 3 selection và không được trùng nhau!", HttpStatus.NOT_FOUND);
         }
 
     }

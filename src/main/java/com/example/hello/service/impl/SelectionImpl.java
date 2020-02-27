@@ -36,5 +36,20 @@ public class SelectionImpl implements SelectionService {
         return selectionRepository.countAllByVariantId(id);
     }
 
+    @Override
+    public Selection findByName(String name) {
+        return selectionRepository.findByName(name);
+    }
+
+    @Override
+    public void deleteAllById(Long id) {
+        selectionRepository.deleteAllByVariantId(id);
+    }
+
+    @Override
+    public Iterable<Selection> findAllByVariantId(Long id) {
+        return selectionRepository.findAllByVariantId(id);
+    }
+
 
 }

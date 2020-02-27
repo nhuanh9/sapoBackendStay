@@ -15,4 +15,12 @@ public interface SelectionService {
     void delete(Long id);
 
     Long countAllByVariantId(Long id);
+
+    Selection findByName(String name);
+
+    void deleteAllById(Long id);
+
+    Iterable<Selection> findAllByVariantId(Long id);
+
+
 }

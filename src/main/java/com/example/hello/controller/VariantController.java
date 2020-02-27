@@ -1,9 +1,11 @@
 package com.example.hello.controller;
 
 import com.example.hello.model.Product;
+import com.example.hello.model.Selection;
 import com.example.hello.model.Variant;
 import com.example.hello.service.CategoryService;
 import com.example.hello.service.ProductService;
+import com.example.hello.service.SelectionService;
 import com.example.hello.service.VariantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ public class VariantController {
     private CategoryService categoryService;
     @Autowired
     private VariantService variantService;
+    @Autowired
+    private SelectionService selectionService;
 
     @GetMapping
     public ResponseEntity<Iterable<Variant>> listVariant() {
@@ -54,6 +58,7 @@ public class VariantController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Variant> editVariant(@PathVariable Long id, @RequestBody Variant variant) {
+        //Iterable<Selection> selections = selectionService.findAllByVariantId(id);
         Optional<Variant> variant1 = variantService.findById(id);
         if (variant1.isPresent()) {
             if (variant.getProduct() != null) {
@@ -74,6 +79,7 @@ public class VariantController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVariant(@PathVariable Long id) {
         Optional<Variant> variant = variantService.findById(id);
+        //selectionService.deleteAllById(id);
         if (variant == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
