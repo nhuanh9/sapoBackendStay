@@ -8,4 +8,5 @@ import javax.persistence.Entity;
 @Repository
 public interface VariantRepository extends JpaRepository<Variant, Long> {
     Variant findByName(String name);
+    Iterable<Variant> findAllByProductId(Long id);
 }
