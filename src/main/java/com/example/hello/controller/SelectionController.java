@@ -26,6 +26,7 @@ public class SelectionController {
     private VariantService variantService;
     @Autowired
     private SelectionService selectionService;
+
     @GetMapping
     public ResponseEntity<Iterable<Selection>> listSelection() {
         Iterable<Selection> selections = selectionService.findAll();
@@ -44,15 +45,15 @@ public class SelectionController {
     @PostMapping
     public ResponseEntity<Selection> createSelection(@RequestBody Selection selection) {
         if (selection.getVariant() != null) {
-            String varient = selection.getVariant().getName();
-            Variant variant1 = variantService.findByName(varient);
-            selection.setVariant(variant1);
+            Long varient = selection.getVariant().getId();
+            Optional<Variant> variant1 = variantService.findById(varient);
+            selection.setVariant(variant1.get());
         } else {
             //product.setCategory(categoryService.findById("Nguyên căn"));
         }
         Long amount = selectionService.countAllByVariantId(selection.getVariant().getId());
-        Selection selection1 = selectionService.findByName(selection.getName());
-        boolean check = selectionService.findByName(selection.getName())==null;
+        Selection selection1 = selectionService.findByVariantIdAndName(selection.getVariant().getId(), selection.getName());
+        boolean check = selection1 == null;
         if (amount <= 2 && check) {
             selectionService.save(selection);
             return new ResponseEntity("Tạo thành công " + amount, HttpStatus.CREATED);

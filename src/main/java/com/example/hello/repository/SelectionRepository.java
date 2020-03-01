@@ -13,4 +13,6 @@ public interface SelectionRepository extends JpaRepository<Selection, Long> {
     void deleteAllByVariantId(Long id);
 
     Iterable<Selection> findAllByVariantId(Long id);
+
+    Selection findByVariantIdAndName(Long id, String name);
 }

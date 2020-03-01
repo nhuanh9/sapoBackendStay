@@ -1,7 +1,6 @@
 package com.example.hello.service;
 
 import com.example.hello.model.Selection;
-import com.example.hello.model.Variant;
 
 import java.util.Optional;
 
@@ -22,5 +21,5 @@ public interface SelectionService {
 
     Iterable<Selection> findAllByVariantId(Long id);
 
-
+    Selection findByVariantIdAndName(Long id, String name);
 }

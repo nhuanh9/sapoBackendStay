@@ -43,8 +43,6 @@ public class ProductController {
             String category = product.getCategory().getName();
             Category category1 = categoryService.findByName(category);
             product.setCategory(category1);
-        } else {
-            //product.setCategory(categoryService.findById("Nguyên căn"));
         }
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
@@ -66,12 +64,17 @@ public class ProductController {
             if (!product.getName().equals("")) {
                 product1.get().setName(product.getName());
             }
-
+            if (!product.getAddress().equals("")) {
+                product1.get().setAddress(product.getAddress());
+            }
+            if (!product.getImageUrls().equals("")) {
+                product1.get().setImageUrls(product.getImageUrls());
+            }
             Calendar cal = Calendar.getInstance();
             Date date = cal.getTime();
             product1.get().setTheMostNearEditDay(date);
             productService.save(product1.get());
-            return new ResponseEntity("Sửa thành công!", HttpStatus.OK);
+        return new ResponseEntity("Sửa thành công!", HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }

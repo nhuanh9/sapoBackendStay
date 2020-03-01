@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/versions")
+@RequestMapping("/api/versionsFail")
 public class VersionController {
     @Autowired
     private ProductService productService;

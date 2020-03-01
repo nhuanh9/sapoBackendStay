@@ -12,8 +12,22 @@ public class VersionProduct {
     private Long id;
 
     private String name;
+    private Long productId;
 
     public VersionProduct() {
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public VersionProduct(Long productId, String name) {
+        this.name = name;
+        this.productId = productId;
     }
 
     public VersionProduct(String name) {

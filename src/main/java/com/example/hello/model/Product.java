@@ -1,13 +1,14 @@
 package com.example.hello.model;
 import javax.persistence.*;
 import java.util.Date;
-
 @Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private String address;
+    private String imageUrls;
     private Date createDay;
     private Date theMostNearEditDay;
     @ManyToOne
@@ -17,8 +18,26 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, Date createDay, Date theMostNearEditDay, Category category) {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(String imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    public Product(String name, String address, String imageUrls, Date createDay, Date theMostNearEditDay, Category category) {
         this.name = name;
+        this.address = address;
+        this.imageUrls = imageUrls;
         this.createDay = createDay;
         this.theMostNearEditDay = theMostNearEditDay;
         this.category = category;

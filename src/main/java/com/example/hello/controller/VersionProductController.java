@@ -41,23 +41,23 @@ public class VersionProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-//
-//    @PostMapping
-//    public ResponseEntity<VersionProduct> createVersion(@RequestBody VersionProductForm versionProductForm) {
-//        String productName = productService.findById(versionProductForm.getProductId()).get().getName();
-//        String variantName = variantService.findById(versionProductForm.getVariantId()).get().getName();
-//        String selectionName = selectionService.findById(versionProductForm.getSelectionId()).get().getName();
-//        String versionProductName = productName + " " +variantName + " " +selectionName;
-//        VersionProduct versionProduct = new VersionProduct(versionProductName);
-//        versionProductService.save(versionProduct);
-//        return new ResponseEntity("Thêm thành công! ", HttpStatus.OK);
-//    }
+
+    @PostMapping("/by-id")
+    public ResponseEntity<VersionProduct> createVersion(@RequestBody VersionProductForm versionProductForm) {
+        String productName = productService.findById(versionProductForm.getProductId()).get().getName();
+        String variantName = variantService.findById(versionProductForm.getVariantId()).get().getName();
+        String selectionName = selectionService.findById(versionProductForm.getSelectionId()).get().getName();
+        String versionProductName = productName + " " + variantName + " " + selectionName;
+        VersionProduct versionProduct = new VersionProduct(versionProductForm.getProductId(), versionProductName);
+        versionProductService.save(versionProduct);
+        return new ResponseEntity("Thêm thành công! ", HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<VersionProduct> createVersion(@RequestBody VersionProduct versionProduct) {
         if (versionProductService.findByName(versionProduct.getName()) == null) {
             versionProductService.save(versionProduct);
-            return new ResponseEntity("Thêm thành công! ", HttpStatus.OK);
+            return new ResponseEntity("Thêm thành công! ", HttpStatus.CREATED);
         }
         return new ResponseEntity("Đã tồn tại!", HttpStatus.NOT_FOUND);
     }

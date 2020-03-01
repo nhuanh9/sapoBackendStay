@@ -51,5 +51,10 @@ public class SelectionImpl implements SelectionService {
         return selectionRepository.findAllByVariantId(id);
     }
 
+    @Override
+    public Selection findByVariantIdAndName(Long id, String name) {
+        return selectionRepository.findByVariantIdAndName(id, name);
+    }
+
 
 }
